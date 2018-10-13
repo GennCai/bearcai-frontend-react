@@ -17,14 +17,17 @@ const resolvers = {
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
+  resolverValidationOptions :{
+    requireResolversForResolveType: false
+  },
   context: req => ({
     ...req,
     db: new Prisma({
       typeDefs: 'src/generated/prisma.graphql',
-      endpoint: '__PRISMA_ENDPOINT__',
+      endpoint: 'http://47.98.204.4:4466/',
       secret: 'mysecret123',
       debug: true,
     }),
   }),
 })
-server.start(() => console.log(`Server is running on http://localhost:4000`))
+server.start({port: 4001}, () => console.log(`Server is running on http://localhost:4001`))

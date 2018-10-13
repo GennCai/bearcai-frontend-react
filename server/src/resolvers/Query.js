@@ -28,6 +28,11 @@ async function feed(parent, args, context, info) {
   }
 }
 
+async function info() { 
+  return "Hello World"
+}
+
 module.exports = {
+  info,
   feed,
 }
